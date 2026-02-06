@@ -48,7 +48,7 @@ jobs:
       - name: Build with Maven
         run: mvn clean verify
       - name: Unit Test Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
           name: SpringBoot Report
