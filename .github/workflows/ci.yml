@@ -41,6 +41,12 @@ jobs:
           distribution: 'jetbrains'
           java-version: '21'
           cache: 'maven'
+          
+      - name: Run and Test with Maven - Product Service
+        run:  mvn package
+        working-directory: product-service
+      - name: Take a look
+        run: ls -l product-service/target/
       # - name: Run and Test with Maven - Product Service
       #   run:  mvn clean verify -B
       #   working-directory: product-service
@@ -62,11 +68,6 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Run and Test with Maven - Product Service
-        run:  mvn package
-        working-directory: product-service
-      - name: Take a look
-        run: ls -l product-service/target/
       - name: Build image
         run: docker build -t productservice .
         working-directory: product-service
