@@ -61,9 +61,7 @@ jobs:
     steps:
     # Login first
       - name: Build product-service Image
-        run: docker build ./product-service -t product-service:latest
-      - name: Build order-service Image
-        run:  docker build ./order-service -t order-service:latest
+        run: docker build -t product-service ./product-service
       - name: Start up docker-compose
         run: docker-compose up
         
