@@ -52,7 +52,7 @@ jobs:
         if: success() || failure()
         with:
           name: SpringBoot Report
-          path: test-output/artifact.json
+          path: test-output
 
 
 
