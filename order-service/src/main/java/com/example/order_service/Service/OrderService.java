@@ -24,7 +24,10 @@ import java.util.Optional;
     }
 
     public boolean addOrder(Order order) {
-        orderRepository.save(order);
-        return true;
-    }
+            // if (product service get by id) quantity >= order quantity
+            // return true
+            // else return false
+            orderRepository.save(order);
+            return true;
+        }
     }
