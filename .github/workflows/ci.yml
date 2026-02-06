@@ -52,7 +52,7 @@ jobs:
         if: success() || failure()
         with:
           name: SpringBoot Report
-          path: ./A1
+          path: 
 
 
 
