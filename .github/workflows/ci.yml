@@ -59,11 +59,13 @@ jobs:
     needs: build-and-test
     
     steps:
-    # Login first
+      - name: Checkout repository
+        uses: actions/checkout@v4
+         
       - name: Build product-service Image
-        run: docker build -t product-service ./product-service
-      - name: Start up docker-compose
-        run: docker-compose up
+        run: docker-compose build
+        
+      
         
       # # Set up BuildKit Docker container builder to be able to build
       # # multi-platform images and export cache
