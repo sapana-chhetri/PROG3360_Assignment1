@@ -47,6 +47,10 @@ jobs:
         working-directory: product-service
       - name: Take a look
         run: ls -l product-service/
+        
+      - name: Build Docker image
+        run: docker build -t productservice .
+        working-directory: product-service
       # - name: Run and Test with Maven - Product Service
       #   run:  mvn clean verify -B
       #   working-directory: product-service
