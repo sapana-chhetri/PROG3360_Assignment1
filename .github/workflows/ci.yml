@@ -41,9 +41,9 @@ jobs:
       #     distribution: 'jetbrains'
       #     java-version: '21'
       #     cache: 'maven'
-      # - name: Run and Test with Maven - Product Service
-      #   run:  mvn clean verify -B
-      #   working-directory: product-service
+      - name: Run and Test with Maven - Product Service
+        run:  mvn clean verify -B
+        working-directory: product-service
       # - name: Run and Test with Maven - Order Service
       #   run:  mvn clean verify -B
       #   working-directory: order-service
