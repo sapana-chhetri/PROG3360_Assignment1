@@ -16,7 +16,7 @@ env:
 
 
 jobs:
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
     permissions:
@@ -41,10 +41,10 @@ jobs:
           distribution: 'jetbrains'
           java-version: '21'
           cache: 'maven'
-      - name: Run with Maven - Product Service
+      - name: Run and Test with Maven - Product Service
         run:  mvn clean verify -B
         working-directory: product-service
-      - name: Run with Maven - Order Service
+      - name: Run and Test with Maven - Order Service
         run:  mvn clean verify -B
         working-directory: order-service
       - name: Unit Test Report
@@ -52,10 +52,21 @@ jobs:
         if: success() || failure()
         with:
           name: SpringBoot Report
-          path: test-output
+          path: test-output/
 
-
-
+  docker-build:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    
+    steps:
+    # Login first
+      - name: Build and Push product-service Image
+        run: # use command from cloud comp?
+      - name: Build and Push order-service Image
+        run: # same deal
+      - name: Start up docker-compose
+        run: docker-compose up
+        
       # # Set up BuildKit Docker container builder to be able to build
       # # multi-platform images and export cache
       # # https://github.com/docker/setup-buildx-action
@@ -107,3 +118,7 @@ jobs:
       #   # This step uses the identity token to provision an ephemeral certificate
       #   # against the sigstore community Fulcio instance.
       #   run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+      - name: Code Linter
+        uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: true
