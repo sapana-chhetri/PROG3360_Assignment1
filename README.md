@@ -4,6 +4,7 @@ Spring Boot Microservices
 
 - Product Service
 - Order Service
+The Order service will call the Product Service to validate product availability before creating an order.
 
 ## Setup & Run
 
